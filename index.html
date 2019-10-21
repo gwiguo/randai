@@ -4,7 +4,7 @@
     <meta name="screen-orientation" content="portrait">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-    <title>年会抽奖小程序</title>
+    <title>抽奖</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/wall.css">
     <style type="text/css">
@@ -139,7 +139,7 @@
 <body>
 <div id="main" class="wall">
     <div class="result-btn">
-       <a href="./result.html" target="_blank">获奖名单</a>
+       <a href="./result.html" target="_blank" style="color: #FFF;">获奖名单</a>
     </div>
 </div>
 <div id="result" class="result">
@@ -161,7 +161,7 @@
 <script type="text/javascript" src="js/zepto.js"></script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/tagcanvas.js"></script>
-<script type="text/javascript" src="js/member.js"></script>
+<!-- <script type="text/javascript" src="js/member.js"></script> -->
 <script type="text/javascript">
     (function(){
         var choosed = JSON.parse(localStorage.getItem('choosed')) || {};
@@ -170,7 +170,7 @@
             return [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)];
         };
         var getKey = function(item){
-            return item.name + '-' + item.phone;
+            return item.name;
         };
         var createHTML = function(){
             var html = [ '<ul>' ];
@@ -203,7 +203,7 @@
                 .map(function(m){
                   choosed[getKey(m)] = 1;
                   list[m.index].style.color = color;
-                  return m.name + '<br/>' + m.phone; 
+                  return m.name + '<br/>'; 
                 });
             localStorage.setItem('choosed', JSON.stringify(choosed));
             return ret;
@@ -222,14 +222,25 @@
                     30, 10, 5, 2, 1
                 ]
             },
+            created(){
+
+            },
             mounted () {
-                canvas.innerHTML = createHTML();
-                TagCanvas.Start('myCanvas', '', {
-                    textColour: null,
-                    initial: speed(),
-                    dragControl: 1,
-                    textHeight: 14
-                });
+                new Promise((resolve,reject)=>{
+                    fetch('http://localhost:3000').then(res=>res.json()).then(res=>{
+                        member = res;
+                        resolve();
+                    })
+                }).then(()=>{
+                    canvas.innerHTML = createHTML();
+                    TagCanvas.Start('myCanvas', '', {
+                        textColour: null,
+                        initial: speed(),
+                        dragControl: 1,
+                        textHeight: 14
+                    });
+                })
+
             },
             methods: {
                 reset: function(){
