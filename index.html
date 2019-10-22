@@ -219,21 +219,13 @@
                 selected: 30,
                 running: false,
                 btns: [
-                    30, 10, 5, 2, 1
+                    8, 4,3,2,1 
                 ]
             },
             created(){
 
             },
             mounted () {
-                // new Promise((resolve,reject)=>{
-                //     fetch('http://localhost:3000').then(res=>res.json()).then(res=>{
-                //         member = res;
-                //         resolve();
-                //     })
-                // }).then(()=>{
-
-                // })
                     canvas.innerHTML = createHTML();
                     TagCanvas.Start('myCanvas', '', {
                         textColour: null,
