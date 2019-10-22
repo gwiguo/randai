@@ -161,7 +161,7 @@
 <script type="text/javascript" src="js/zepto.js"></script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/tagcanvas.js"></script>
-<!-- <script type="text/javascript" src="js/member.js"></script> -->
+<script type="text/javascript" src="js/member.js"></script>
 <script type="text/javascript">
     (function(){
         var choosed = JSON.parse(localStorage.getItem('choosed')) || {};
@@ -226,12 +226,14 @@
 
             },
             mounted () {
-                new Promise((resolve,reject)=>{
-                    fetch('http://localhost:3000').then(res=>res.json()).then(res=>{
-                        member = res;
-                        resolve();
-                    })
-                }).then(()=>{
+                // new Promise((resolve,reject)=>{
+                //     fetch('http://localhost:3000').then(res=>res.json()).then(res=>{
+                //         member = res;
+                //         resolve();
+                //     })
+                // }).then(()=>{
+
+                // })
                     canvas.innerHTML = createHTML();
                     TagCanvas.Start('myCanvas', '', {
                         textColour: null,
@@ -239,7 +241,6 @@
                         dragControl: 1,
                         textHeight: 14
                     });
-                })
 
             },
             methods: {

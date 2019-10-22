@@ -1,26 +1,49 @@
 const express = require("express");
 const fs = require("fs");
-var app = express();
+const readline = require("readline");
 
+fs.writeFileSync('./result.txt','');
 
-app.use("*", function (req, res, next) {
-    res.set({
-        "Access-Control-Allow-Origin": "*"
-    });
-    next();
+const rl = readline.createInterface({ 
+  input: fs.createReadStream('./1.txt')
 });
 
-app.use("/", (req, res) => {
-    fs.readFile('1.txt' ,(err, data) => {
-        if (err) throw err;
-        let member = [];
-        data.toString().trim().replace(/\r/g, "").split("\n").forEach(item => {
-            member.push({
-                "name" : item
-            })
-        })
-        res.json(member);
-    });
+let arr = [];
+rl.on('line',line => {
+    arr.push(line);
 })
 
-app.listen(3000);
+rl.on('close',()=>{
+    // 去重
+    const data = [];
+    Array.from(new Set(arr)).forEach(item => {
+        data.push({
+            'name' : item
+        })
+    })
+    fs.appendFileSync('./result.txt', JSON.stringify(data));
+})
+// var app = express();
+
+
+// app.use("*", function (req, res, next) {
+//     res.set({
+//         "Access-Control-Allow-Origin": "*"
+//     });
+//     next();
+// });
+
+// app.use("/", (req, res) => {
+//     fs.readFile('1.txt' ,(err, data) => {
+//         if (err) throw err;
+//         let member = [];
+//         data.toString().trim().replace(/\r/g, "").split("\n").forEach(item => {
+//             member.push({
+//                 "name" : item
+//             })
+//         })
+//         res.json(member);
+//     });
+// })
+
+// app.listen(3000);
