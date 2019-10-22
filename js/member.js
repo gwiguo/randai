@@ -27,7 +27,7 @@ var member = [
         "name": "萝卜"
     },
     {
-        "name": "hassan"
+        "name": "hasson"
     },
     {
         "name": "闲仔"
@@ -73,9 +73,6 @@ var member = [
     },
     {
         "name": "仙女喵"
-    },
-    {
-        "name": "hasson"
     },
     {
         "name": "阿牛"
