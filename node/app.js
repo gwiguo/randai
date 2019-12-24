@@ -16,7 +16,7 @@ rl.on('line',line => {
 
 rl.on('close',()=>{    
     const data = [];
-    Array.from(new Set(arr.map(item => item.toLocaleLowerCase()))).forEach(item => {
+    arr.forEach(item => {
         data.push({
             'name' : item
         })
