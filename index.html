@@ -132,7 +132,7 @@
         .result-btn {
             position: absolute;
             z-index:999;
-            top: 20px;
+            top: 50px;
             right: 0;
             text-align: right;
             margin-right: 30px;
@@ -141,6 +141,7 @@
 </head>
 <body>
 <div id="main" class="wall">
+    <h1 class="title">3.6-3.8深渊团战抽奖</h1>
     <div class="result-btn">
        <a href="./result.html"  style="color: #FFF;">获奖名单</a>
     </div>
@@ -167,8 +168,9 @@
 <script type="text/javascript" src="js/member.js"></script>
 <script type="text/javascript">
     (function(){
+        console.log(member)
         var choosed = JSON.parse(localStorage.getItem('choosed')) || {};
-        console.log(choosed);
+        // console.log(choosed);
         var speed = function(){
             return [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)];
         };
