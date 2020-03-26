@@ -137,14 +137,21 @@
             text-align: right;
             margin-right: 30px;
         }
+        h1.title{
+            margin: 10px auto;
+            line-height: 34px;
+            text-align: center;
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
 <div id="main" class="wall">
     <h1 class="title">3.20-3.22深渊家族战抽奖（4个S、S+位置）</h1>
-    <div class="result-btn">
+    <!-- <div class="result-btn">
        <a href="./result.html"  style="color: #FFF;">获奖名单</a>
-    </div>
+    </div> -->
 </div>
 <div id="result" class="result">
 </div>
@@ -216,7 +223,7 @@
         var canvas = document.createElement('canvas');
         canvas.id = 'myCanvas';
         canvas.width = document.body.offsetWidth;
-        canvas.height = document.body.offsetHeight;
+        canvas.height = document.body.offsetHeight - document.querySelector("#tools").offsetHeight;
         document.getElementById('main').appendChild(canvas);
         new Vue({
             el: '#tools',
