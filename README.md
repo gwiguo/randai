@@ -1,6 +1,6 @@
 # 忍者必须死3染黛如歌家族抽奖程序
 
-[出处](https://github.com/fouber/lottery)
+[引用](https://github.com/fouber/lottery)
 
 
 
